@@ -11,6 +11,7 @@ import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import TeamCompsPage from "./pages/teamcomps/TeamCompsPage";
+import ChampionsPage from "./pages/champions/ChampionsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           {/* Public routes */}
           <Route path="/" element={<TeamCompsPage />} />
           <Route path="/team-comps" element={<TeamCompsPage />} />
+          <Route path="/champions"  element={<ChampionsPage />} />
 
           <Route element={<SimpleLayout />}>
             <Route path="/login" element={<LoginPage />} />

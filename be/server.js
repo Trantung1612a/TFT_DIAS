@@ -21,7 +21,8 @@ app.use(passport.initialize());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
-app.use("/api/auth", require("./src/routes/auth.route"));
+app.use("/api/auth",      require("./src/routes/auth.route"));
+app.use("/api/champions", require("./src/routes/champion.route"));
 
 // Health check
 app.get("/", (req, res) => res.json({ message: "TFT DIAS API is running" }));

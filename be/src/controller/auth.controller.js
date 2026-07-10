@@ -68,3 +68,4 @@ const getProfile = async (req, res) => {
 };
 
 module.exports = { register, login, sendOTPHandler, verifyOTP, getProfile };
+ 
