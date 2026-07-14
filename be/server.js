@@ -11,6 +11,12 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
+// Verify Cloudinary (auto-configured via CLOUDINARY_URL in .env)
+require("cloudinary").v2.api
+  .ping()
+  .then(() => console.log("✅ Cloudinary connected"))
+  .catch((e) => console.error("❌ Cloudinary error:", e?.error?.message || e.message));
+
 // Middleware
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
 app.use(express.json());
@@ -23,6 +29,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Routes
 app.use("/api/auth",      require("./src/routes/auth.route"));
 app.use("/api/champions", require("./src/routes/champion.route"));
+app.use("/api/origins",   require("./src/routes/origin.route"));
+app.use("/api/classes",   require("./src/routes/class.route"));
 
 // Health check
 app.get("/", (req, res) => res.json({ message: "TFT DIAS API is running" }));

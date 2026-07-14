@@ -4,7 +4,8 @@
       "Bash(git -C \"/d/TFT_DIAS\" status --short)",
       "Bash(git -C \"/d/TFT_DIAS\" log --all --oneline -- .mcp.json)",
       "Bash(git -C \"/d/TFT_DIAS\" log --oneline -5)",
-      "Bash(git -C \"/d/TFT_DIAS\" diff -- .gitignore)"
+      "Bash(git -C \"/d/TFT_DIAS\" diff -- .gitignore)",
+      "PowerShell(grep \"CLOUDINARY\" \"d:\\\\TFT_DIAS\\\\be\\\\.env\")"
     ]
   }
 }
