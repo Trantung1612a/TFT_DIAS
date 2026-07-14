@@ -26,4 +26,17 @@ const getChampionById = async (id) => {
     .populate("items");
 };
 
-module.exports = { getAllChampions, getChampionById };
+const createChampion = async (data) => {
+  const champion = new Champion(data);
+  return champion.save();
+};
+
+const updateChampion = async (id, data) => {
+  return Champion.findByIdAndUpdate(id, data, { new: true, runValidators: true });
+};
+
+const deleteChampion = async (id) => {
+  return Champion.findByIdAndDelete(id);
+};
+
+module.exports = { getAllChampions, getChampionById, createChampion, updateChampion, deleteChampion };

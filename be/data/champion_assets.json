@@ -1,0 +1,392 @@
+[
+  {
+    "name": "Aatrox",
+    "public_id": "TFT16_Aatrox_bvbs6j",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018900/TFT16_Aatrox_bvbs6j.webp"
+  },
+  {
+    "name": "Ahri",
+    "public_id": "TFT16_Ahri_wumver",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017784/TFT16_Ahri_wumver.webp"
+  },
+  {
+    "name": "Ambessa",
+    "public_id": "TFT16_Ambessa_wrfze8",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017763/TFT16_Ambessa_wrfze8.webp"
+  },
+  {
+    "name": "Anivia",
+    "public_id": "TFT16_Anivia_opxe6f",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017738/TFT16_Anivia_opxe6f.webp"
+  },
+  {
+    "name": "Annie",
+    "public_id": "TFT16_Annie_trrqxf",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018898/TFT16_Annie_trrqxf.webp"
+  },
+  {
+    "name": "Aphelios",
+    "public_id": "TFT16_Aphelios_vbaz2h",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017974/TFT16_Aphelios_vbaz2h.webp"
+  },
+  {
+    "name": "Ashe",
+    "public_id": "TFT16_Ashe_ebetyy",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017973/TFT16_Ashe_ebetyy.webp"
+  },
+  {
+    "name": "AurelionSol",
+    "public_id": "TFT16_AurelionSol_m8zzvh",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018910/TFT16_AurelionSol_m8zzvh.webp"
+  },
+  {
+    "name": "Azir",
+    "public_id": "TFT16_Azir_mwxnpf",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018897/TFT16_Azir_mwxnpf.webp"
+  },
+  {
+    "name": "Bard",
+    "public_id": "TFT16_Bard_gy1afz",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018117/TFT16_Bard_gy1afz.webp"
+  },
+  {
+    "name": "BaronNashor",
+    "public_id": "TFT16_BaronNashor_obkjr4",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018909/TFT16_BaronNashor_obkjr4.webp"
+  },
+  {
+    "name": "Braum",
+    "public_id": "TFT16_Braum_kvkxbc",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017762/TFT16_Braum_kvkxbc.webp"
+  },
+  {
+    "name": "Briar",
+    "public_id": "TFT16_Briar_c1fm0w",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017664/TFT16_Briar_c1fm0w.webp"
+  },
+  {
+    "name": "Brock",
+    "public_id": "TFT16_Brock_go9rln",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018907/TFT16_Brock_go9rln.webp"
+  },
+  {
+    "name": "ChoGath",
+    "public_id": "TFT16_ChoGath_ir59eh",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017971/TFT16_ChoGath_ir59eh.webp"
+  },
+  {
+    "name": "Diana",
+    "public_id": "TFT16_Diana_i5cth5",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017761/TFT16_Diana_i5cth5.webp"
+  },
+  {
+    "name": "Draven",
+    "public_id": "TFT16_Draven_m8uhg6",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017910/TFT16_Draven_m8uhg6.webp"
+  },
+  {
+    "name": "DrMundo",
+    "public_id": "TFT16_DrMundo_rbxydw",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017909/TFT16_DrMundo_rbxydw.webp"
+  },
+  {
+    "name": "Fiddlesticks",
+    "public_id": "TFT16_Fiddlesticks_fu52qx",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018895/TFT16_Fiddlesticks_fu52qx.webp"
+  },
+  {
+    "name": "Fizz",
+    "public_id": "TFT16_Fizz_y8px2q",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017761/TFT16_Fizz_y8px2q.webp"
+  },
+  {
+    "name": "Galio",
+    "public_id": "TFT16_Galio_dmkqfb",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018894/TFT16_Galio_dmkqfb.webp"
+  },
+  {
+    "name": "Gangplank",
+    "public_id": "TFT16_Gangplank_oyelk2",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017781/TFT16_Gangplank_oyelk2.webp"
+  },
+  {
+    "name": "Garen",
+    "public_id": "TFT16_Garen_dgpl8t",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017760/TFT16_Garen_dgpl8t.webp"
+  },
+  {
+    "name": "Graves",
+    "public_id": "TFT16_Graves_ufczgt",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017969/TFT16_Graves_ufczgt.webp"
+  },
+  {
+    "name": "Illaoi",
+    "public_id": "TFT16_Illaoi_nisgwh",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018318/TFT16_Illaoi_nisgwh.webp"
+  },
+  {
+    "name": "JarvanIV",
+    "public_id": "TFT16_JarvanIV_wf4zd5",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017663/TFT16_JarvanIV_wf4zd5.webp"
+  },
+  {
+    "name": "Kaisa",
+    "public_id": "TFT16_Kaisa_lnoxjr",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017760/TFT16_Kaisa_lnoxjr.webp"
+  },
+  {
+    "name": "Kalista",
+    "public_id": "TFT16_Kalista_l5ink1",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017759/TFT16_Kalista_l5ink1.webp"
+  },
+  {
+    "name": "Kennen",
+    "public_id": "TFT16_Kennen_eebzsn",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017779/TFT16_Kennen_eebzsn.webp"
+  },
+  {
+    "name": "Kindred",
+    "public_id": "TFT16_Kindred_xwht9q",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018858/TFT16_Kindred_xwht9q.webp"
+  },
+  {
+    "name": "Kobuko",
+    "public_id": "TFT16_Kobuko_zxa64q",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017911/TFT16_Kobuko_zxa64q.webp"
+  },
+  {
+    "name": "Leblanc",
+    "public_id": "TFT16_Leblanc_djyshs",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017778/TFT16_Leblanc_djyshs.webp"
+  },
+  {
+    "name": "Leona",
+    "public_id": "TFT16_Leona_xg2aoi",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017777/TFT16_Leona_xg2aoi.webp"
+  },
+  {
+    "name": "Lissandra",
+    "public_id": "TFT16_Lissandra_qsd2jr",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017758/TFT16_Lissandra_qsd2jr.webp"
+  },
+  {
+    "name": "Loris",
+    "public_id": "TFT16_Loris_xz2ntb",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017776/TFT16_Loris_xz2ntb.webp"
+  },
+  {
+    "name": "Lucian",
+    "public_id": "TFT16_Lucian_fbonph",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018857/TFT16_Lucian_fbonph.webp"
+  },
+  {
+    "name": "Malzahar",
+    "public_id": "TFT16_Malzahar_r8xovw",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017912/TFT16_Malzahar_r8xovw.webp"
+  },
+  {
+    "name": "Mel",
+    "public_id": "TFT16_Mel_jwb3jf",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018856/TFT16_Mel_jwb3jf.webp"
+  },
+  {
+    "name": "Nasus",
+    "public_id": "TFT16_Nasus_mntaga",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017758/TFT16_Nasus_mntaga.webp"
+  },
+  {
+    "name": "Neeko",
+    "public_id": "TFT16_Neeko_yjj4re",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017968/TFT16_Neeko_yjj4re.webp"
+  },
+  {
+    "name": "Nidalee",
+    "public_id": "TFT16_Nidalee_c06q6u",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017757/TFT16_Nidalee_c06q6u.webp"
+  },
+  {
+    "name": "Orianna",
+    "public_id": "TFT16_Orianna_vcpqid",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018115/TFT16_Orianna_vcpqid.webp"
+  },
+  {
+    "name": "Ornn",
+    "public_id": "TFT16_Ornn_jzjpsg",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018854/TFT16_Ornn_jzjpsg.webp"
+  },
+  {
+    "name": "Poppy",
+    "public_id": "TFT16_Poppy_trkkij",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017966/TFT16_Poppy_trkkij.webp"
+  },
+  {
+    "name": "Renekton",
+    "public_id": "TFT16_Renekton_gjsxun",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017756/TFT16_Renekton_gjsxun.webp"
+  },
+  {
+    "name": "RiftHerald",
+    "public_id": "TFT16_RiftHerald_byi3zb",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017755/TFT16_RiftHerald_byi3zb.webp"
+  },
+  {
+    "name": "Rumble",
+    "public_id": "TFT16_Rumble_ed7u12",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017663/TFT16_Rumble_ed7u12.webp"
+  },
+  {
+    "name": "Sejuani",
+    "public_id": "TFT16_Sejuani_xmwls9",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017774/TFT16_Sejuani_xmwls9.webp"
+  },
+  {
+    "name": "Seraphine",
+    "public_id": "TFT16_Seraphine_awy1hq",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017755/TFT16_Seraphine_awy1hq.webp"
+  },
+  {
+    "name": "Sett",
+    "public_id": "TFT16_Sett_ayyt8s",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018853/TFT16_Sett_ayyt8s.webp"
+  },
+  {
+    "name": "Shen",
+    "public_id": "TFT16_Shen_vxn3mc",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017663/TFT16_Shen_vxn3mc.webp"
+  },
+  {
+    "name": "Shyvana",
+    "public_id": "TFT16_Shyvana_peiair",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018850/TFT16_Shyvana_peiair.webp"
+  },
+  {
+    "name": "Singed",
+    "public_id": "TFT16_Singed_wrpsss",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017754/TFT16_Singed_wrpsss.webp"
+  },
+  {
+    "name": "Sion",
+    "public_id": "TFT16_Sion_boskgy",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018114/TFT16_Sion_boskgy.webp"
+  },
+  {
+    "name": "Skarner",
+    "public_id": "TFT16_Skarner_h2jevo",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017753/TFT16_Skarner_h2jevo.webp"
+  },
+  {
+    "name": "Swain",
+    "public_id": "TFT16_Swain_x72awy",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017753/TFT16_Swain_x72awy.webp"
+  },
+  {
+    "name": "Sylas",
+    "public_id": "TFT16_Sylas_y2nr2f",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018905/TFT16_Sylas_y2nr2f.webp"
+  },
+  {
+    "name": "TahmKench",
+    "public_id": "TFT16_TahmKench_st3svu",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018849/TFT16_TahmKench_st3svu.webp"
+  },
+  {
+    "name": "Taric",
+    "public_id": "TFT16_Taric_p5ppar",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017752/TFT16_Taric_p5ppar.webp"
+  },
+  {
+    "name": "THex",
+    "public_id": "TFT16_THex_rbshpv",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018851/TFT16_THex_rbshpv.jpg"
+  },
+  {
+    "name": "Thresh",
+    "public_id": "TFT16_Thresh_tvcdpj",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018847/TFT16_Thresh_tvcdpj.webp"
+  },
+  {
+    "name": "Tristana",
+    "public_id": "TFT16_Tristana_wvie3g",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017945/TFT16_Tristana_wvie3g.webp"
+  },
+  {
+    "name": "Tryndamere",
+    "public_id": "TFT16_Tryndamere_nvnyl9",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018116/TFT16_Tryndamere_nvnyl9.webp"
+  },
+  {
+    "name": "TwistedFate",
+    "public_id": "TFT16_TwistedFate_snde2o",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017943/TFT16_TwistedFate_snde2o.webp"
+  },
+  {
+    "name": "Veigar",
+    "public_id": "TFT16_Veigar_b5xd3t",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017752/TFT16_Veigar_b5xd3t.webp"
+  },
+  {
+    "name": "Viego",
+    "public_id": "TFT16_Viego_aot2kk",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017662/TFT16_Viego_aot2kk.webp"
+  },
+  {
+    "name": "Volibear",
+    "public_id": "TFT16_Volibear_vty3ug",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018846/TFT16_Volibear_vty3ug.webp"
+  },
+  {
+    "name": "Warwick",
+    "public_id": "TFT16_Warwick_ovw35m",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017751/TFT16_Warwick_ovw35m.webp"
+  },
+  {
+    "name": "Wukong",
+    "public_id": "TFT16_Wukong_w7qxrp",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017751/TFT16_Wukong_w7qxrp.webp"
+  },
+  {
+    "name": "Xerath",
+    "public_id": "TFT16_Xerath_c9t7af",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018845/TFT16_Xerath_c9t7af.webp"
+  },
+  {
+    "name": "XinZhao",
+    "public_id": "TFT16_XinZhao_aegp9u",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017941/TFT16_XinZhao_aegp9u.webp"
+  },
+  {
+    "name": "Yasuo",
+    "public_id": "TFT16_Yasuo_fquwpw",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017940/TFT16_Yasuo_fquwpw.webp"
+  },
+  {
+    "name": "Yone",
+    "public_id": "TFT16_Yone_q5iwit",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017750/TFT16_Yone_q5iwit.webp"
+  },
+  {
+    "name": "Yorick",
+    "public_id": "TFT16_Yorick_uwelvg",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017939/TFT16_Yorick_uwelvg.webp"
+  },
+  {
+    "name": "Yunara",
+    "public_id": "TFT16_Yunara_hsumbo",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784017750/TFT16_Yunara_hsumbo.webp"
+  },
+  {
+    "name": "Zaahen",
+    "public_id": "TFT16_Zaahen_usuaet",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018904/TFT16_Zaahen_usuaet.webp"
+  },
+  {
+    "name": "Ziggs",
+    "public_id": "TFT16_Ziggs_hs4uyy",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018844/TFT16_Ziggs_hs4uyy.webp"
+  },
+  {
+    "name": "Zilean",
+    "public_id": "TFT16_Zilean_pzntlz",
+    "avt": "https://res.cloudinary.com/ecoturre/image/upload/v1784018843/TFT16_Zilean_pzntlz.webp"
+  }
+]

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getChampions, getChampion } = require("../controller/champion.controller");
+const { getChampions, getChampion, addChampion, editChampion, removeChampion } = require("../controller/champion.controller");
 
 /**
  * @swagger
@@ -40,6 +40,7 @@ const { getChampions, getChampion } = require("../controller/champion.controller
  *         description: List of champions
  */
 router.get("/", getChampions);
+router.post("/", addChampion);
 
 /**
  * @swagger
@@ -60,5 +61,7 @@ router.get("/", getChampions);
  *         description: Champion not found
  */
 router.get("/:id", getChampion);
+router.put("/:id", editChampion);
+router.delete("/:id", removeChampion);
 
 module.exports = router;

@@ -17,6 +17,8 @@ const championSchema = new mongoose.Schema(
       type: { type: String, enum: ["active", "passive"], default: "active" },
       description: { type: String, trim: true },
     },
+    base_image_id: { type: String, required: true, trim: true },
+    slot: { type: Number, min: 1 },
     origin: { type: mongoose.Schema.Types.ObjectId, ref: "Origin" },
     class: { type: mongoose.Schema.Types.ObjectId, ref: "Class" },
   },
