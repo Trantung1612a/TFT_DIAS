@@ -5,7 +5,9 @@
       "Bash(git -C \"/d/TFT_DIAS\" log --all --oneline -- .mcp.json)",
       "Bash(git -C \"/d/TFT_DIAS\" log --oneline -5)",
       "Bash(git -C \"/d/TFT_DIAS\" diff -- .gitignore)",
-      "PowerShell(grep \"CLOUDINARY\" \"d:\\\\TFT_DIAS\\\\be\\\\.env\")"
+      "PowerShell(grep \"CLOUDINARY\" \"d:\\\\TFT_DIAS\\\\be\\\\.env\")",
+      "Bash(npx vite *)",
+      "PowerShell(cd d:\\\\TFT_DIAS\\\\fe; Start-Process -FilePath \"npx\" -ArgumentList \"vite\",\"--port\",\"5173\" -WindowStyle Hidden -PassThru | Select-Object Id; Start-Sleep 3; try { $r = Invoke-WebRequest \"http://localhost:5173/champions\" -UseBasicParsing -TimeoutSec 5; Write-Host \"Status: $\\($r.StatusCode\\)\"; Write-Host \\($r.Content | Select-String -Pattern \"button\" -AllMatches | Select-Object -First 3\\) } catch { Write-Host \"Cannot reach dev server: $_\" })"
     ]
   }
 }

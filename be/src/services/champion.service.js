@@ -8,8 +8,8 @@ const getAllChampions = async ({ set, cost, search, page = 1, limit = 100 }) => 
 
   const [champions, total] = await Promise.all([
     Champion.find(filter)
-      .populate("origin", "name")
-      .populate("class",  "name")
+      .populate("origins", "name")
+      .populate("classes", "name")
       .sort({ cost: 1, name: 1 })
       .skip((page - 1) * limit)
       .limit(limit),
@@ -21,8 +21,8 @@ const getAllChampions = async ({ set, cost, search, page = 1, limit = 100 }) => 
 
 const getChampionById = async (id) => {
   return Champion.findById(id)
-    .populate("origin")
-    .populate("class")
+    .populate("origins")
+    .populate("classes")
     .populate("items");
 };
 

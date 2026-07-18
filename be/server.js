@@ -31,6 +31,7 @@ app.use("/api/auth",      require("./src/routes/auth.route"));
 app.use("/api/champions", require("./src/routes/champion.route"));
 app.use("/api/origins",   require("./src/routes/origin.route"));
 app.use("/api/classes",   require("./src/routes/class.route"));
+app.use("/api/upload",    require("./src/routes/upload.route"));
 
 // Health check
 app.get("/", (req, res) => res.json({ message: "TFT DIAS API is running" }));

@@ -19,8 +19,8 @@ const championSchema = new mongoose.Schema(
     },
     base_image_id: { type: String, required: true, trim: true },
     slot: { type: Number, min: 1 },
-    origin: { type: mongoose.Schema.Types.ObjectId, ref: "Origin" },
-    class: { type: mongoose.Schema.Types.ObjectId, ref: "Class" },
+    origins: [{ type: mongoose.Schema.Types.ObjectId, ref: "Origin" }],
+    classes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class" }],
   },
   { timestamps: true }
 );  
