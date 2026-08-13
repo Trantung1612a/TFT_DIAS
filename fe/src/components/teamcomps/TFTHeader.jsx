@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 
 const navItems = [
   { label: "Team Comps", to: "/team-comps" },
-  { label: "Champions",  to: "/champions"  },
+  { label: "Champions", to: "/champions" },
   { label: "Tier Lists", to: "/tier-lists" },
   { label: "Item Builder", to: "/item-builder" },
   { label: "Team Builder", to: "/team-builder" },
-  { label: "Database",   to: "/database"   },
+  { label: "Champ ", to: "/admin/champions" },
 ];
 
 const TFTHeader = () => {
@@ -33,10 +33,9 @@ const TFTHeader = () => {
               key={to}
               to={to}
               className={({ isActive }) =>
-                `h-16 flex items-center text-sm font-medium border-b-2 transition-colors ${
-                  isActive
-                    ? "text-white border-orange-500"
-                    : "text-slate-400 border-transparent hover:text-white"
+                `h-16 flex items-center text-sm font-medium border-b-2 transition-colors ${isActive
+                  ? "text-white border-orange-500"
+                  : "text-slate-400 border-transparent hover:text-white"
                 }`
               }
             >

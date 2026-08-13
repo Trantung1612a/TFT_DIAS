@@ -4,7 +4,7 @@ import TFTHeader from "../../components/teamcomps/TFTHeader";
 import RichText from "../../components/RichText";
 import { champions, COSTS } from "../../data/champions";
 
-const API        = "http://localhost:5000/api/champions";
+const API        = `${import.meta.env.VITE_API_URL || "/api"}/champions`;
 // Square icon for team comp / champion card grid
 const CDN_ICON   = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill,g_auto,q_auto,f_auto/${id}`;
 // Full landscape banner for detail popup

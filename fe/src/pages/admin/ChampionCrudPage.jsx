@@ -3,7 +3,7 @@ import { Plus, Pencil, Trash2, X, Search, ChevronLeft, ChevronRight, ChevronDown
 import TFTHeader from "../../components/teamcomps/TFTHeader";
 import RichText from "../../components/RichText";
 
-const BASE = "http://localhost:5000/api";
+const BASE = import.meta.env.VITE_API_URL || "/api";
 const API  = `${BASE}/champions`;
 const CDN  = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill/${id}`;
 // Square icon for team comp grid (g_auto smart-crops the landscape source)

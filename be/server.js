@@ -18,7 +18,18 @@ require("cloudinary").v2.api
   .catch((e) => console.error("❌ Cloudinary error:", e?.error?.message || e.message));
 
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  "http://localhost:5173",
+].filter(Boolean);
+app.use(cors({
+  origin: (origin, cb) => {
+    // Allow requests with no origin (curl, Postman) or matching allowed origins
+    if (!origin || allowedOrigins.some((o) => origin.startsWith(o))) return cb(null, true);
+    cb(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
@@ -39,9 +50,12 @@ app.get("/", (req, res) => res.json({ message: "TFT DIAS API is running" }));
 // Error handler
 app.use(require("./src/middleware/error.middleware"));
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Swagger docs: http://localhost:${PORT}/api-docs`);
-});
+// Only bind port when running directly (not imported by Vercel serverless)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Swagger docs: http://localhost:${PORT}/api-docs`);
+  });
+}
 
 module.exports = app;
