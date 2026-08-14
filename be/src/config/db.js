@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 
+let isConnected = false;
+
 const connectDB = async () => {
+  if (isConnected) return;
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log("GGez");
+    isConnected = true;
+    console.log("✅ MongoDB connected");
   } catch (error) {
-    console.error("MongoDB connection error:", error.message);
-    process.exit(1);
+    // Do NOT call process.exit() — it crashes Vercel serverless functions
+    console.error("❌ MongoDB connection error:", error.message);
   }
 };
 
