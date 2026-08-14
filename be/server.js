@@ -22,10 +22,18 @@ const allowedOrigins = [
   process.env.CLIENT_URL,
   "http://localhost:5173",
 ].filter(Boolean);
+
+// Allow production URL + any Vercel preview URL for this project
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true; // curl, Postman
+  if (allowedOrigins.some((o) => origin.startsWith(o))) return true;
+  if (/^https:\/\/tft-dias-frontend[\w-]*\.vercel\.app$/.test(origin)) return true;
+  return false;
+};
+
 app.use(cors({
   origin: (origin, cb) => {
-    // Allow requests with no origin (curl, Postman) or matching allowed origins
-    if (!origin || allowedOrigins.some((o) => origin.startsWith(o))) return cb(null, true);
+    if (isAllowedOrigin(origin)) return cb(null, true);
     cb(new Error("Not allowed by CORS"));
   },
   credentials: true,
