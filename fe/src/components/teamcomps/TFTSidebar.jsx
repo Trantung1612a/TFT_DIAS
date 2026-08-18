@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { filterGroups } from "../../data/teamComps";
+
+const filterGroups = ["Standard", "Slow Roll", "Fast 8/9", "Emblem", "Augment"];
 
 const TFTSidebar = () => {
   const [checked, setChecked] = useState({});

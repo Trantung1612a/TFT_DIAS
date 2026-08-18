@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Search, X } from "lucide-react";
-import { champions, COSTS } from "../../data/champions";
 
 const CDN_ICON = (id) =>
   `https://res.cloudinary.com/ecoturre/image/upload/w_48,h_48,c_fill,g_auto,q_auto,f_auto/${id}`;
+
+const COSTS = [1, 2, 3, 4, 5];
 
 const COST_BORDER = {
   1: "border-slate-400",
@@ -43,13 +44,13 @@ const ChampionChip = ({ champion, isSelected, isOnBoard, onClick, imageMap }) =>
     .slice(0, 2)
     .toUpperCase();
 
-  const imgId = imageMap?.[name];
+  const imgId = champion.base_image_id || imageMap?.[name];
 
   return (
     <button
       type="button"
       onClick={() => onClick(champion)}
-      title={`${name} (${cost}-cost) — ${champion.origin} · ${champion.cls}`}
+      title={`${name} (${cost}-cost)`}
       className={`
         relative flex flex-col items-center gap-1 p-1 rounded-lg cursor-pointer
         transition-all duration-150 group border-2 select-none
@@ -100,19 +101,23 @@ const ChampionChip = ({ champion, isSelected, isOnBoard, onClick, imageMap }) =>
   );
 };
 
-const ChampionPool = ({ selectedChamp, onSelectChamp, boardChamps, imageMap }) => {
+const ChampionPool = ({ champions = [], selectedChamp, onSelectChamp, boardChamps, imageMap }) => {
   const [search, setSearch] = useState("");
 
   const boardNames = useMemo(() => new Set(boardChamps.map((c) => c?.name).filter(Boolean)), [boardChamps]);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
-    return champions.filter((c) =>
-      c.name.toLowerCase().includes(q) ||
-      c.origin.toLowerCase().includes(q) ||
-      c.cls.toLowerCase().includes(q)
-    );
-  }, [search]);
+    return champions.filter((c) => {
+      const originNames = (c.origins || []).map((o) => o.name?.toLowerCase() || "").join(" ");
+      const classNames = (c.classes || []).map((cl) => cl.name?.toLowerCase() || "").join(" ");
+      return (
+        c.name.toLowerCase().includes(q) ||
+        originNames.includes(q) ||
+        classNames.includes(q)
+      );
+    });
+  }, [search, champions]);
 
   const grouped = useMemo(() => {
     const map = {};
@@ -177,7 +182,7 @@ const ChampionPool = ({ selectedChamp, onSelectChamp, boardChamps, imageMap }) =
               <div className="flex flex-wrap gap-1.5">
                 {champs.map((champ) => (
                   <ChampionChip
-                    key={champ.name}
+                    key={champ._id || champ.name}
                     champion={champ}
                     isSelected={selectedChamp?.name === champ.name}
                     isOnBoard={boardNames.has(champ.name)}

@@ -2,7 +2,63 @@ import { ChevronDown, Search } from "lucide-react";
 import TFTHeader from "../../components/teamcomps/TFTHeader";
 import TFTSidebar from "../../components/teamcomps/TFTSidebar";
 import CompRow from "../../components/teamcomps/CompRow";
-import { teamComps } from "../../data/teamComps";
+
+// TODO: Replace with API fetch when backend endpoint is ready
+const c = (name, cost, stars) => ({ name, cost, stars });
+const teamComps = [
+  {
+    tier: "S",
+    trend: "up",
+    name: "Space Groove Replicators",
+    tags: [
+      { label: "Fast 8", type: "fast" },
+      { label: "Emblem", type: "emblem" },
+    ],
+    champions: [
+      c("Gwen", 4), c("Pantheon", 1), c("Ornn", 3), c("Nami", 1),
+      c("Riven", 2), c("Tahm Kench", 2), c("Blitzcrank", 4), c("Shen", 5),
+    ],
+  },
+  {
+    tier: "S",
+    name: "Dark Stars",
+    tags: [
+      { label: "Fast 8", type: "fast" },
+      { label: "Emblem", type: "emblem" },
+    ],
+    champions: [
+      c("Chogath", 1), c("Mordekaiser", 4), c("Kaisa", 4), c("Aurelion Sol", 5),
+      c("Karma", 2), c("Tahm Kench", 2), c("Thresh", 3), c("Jhin", 5),
+    ],
+  },
+  {
+    tier: "S",
+    name: "Meeple Voyagers",
+    tags: [{ label: "Slow Roll (6)", type: "slow" }],
+    champions: [
+      c("Poppy", 1), c("Gnar", 1, 3), c("Meeple", 2), c("Karma", 2),
+      c("Rammus", 3), c("Thresh", 3), c("Bard", 4), c("Jhin", 5),
+    ],
+  },
+  {
+    tier: "S",
+    name: "Primordian Challengers",
+    tags: [{ label: "Slow Roll (6)", type: "slow" }],
+    champions: [
+      c("Briar", 1), c("RekSai", 2), c("Akali", 3, 3), c("Belveth", 4, 3),
+      c("Jinx", 4, 3), c("Maokai", 3), c("Rhaast", 5, 3), c("Kindred", 5, 3),
+    ],
+  },
+  {
+    tier: "S",
+    name: "Psionic Marauders",
+    tags: [{ label: "Fast 8", type: "fast" }],
+    champions: [
+      c("Belveth", 4), c("Gragas", 1), c("Maokai", 3), c("Urgot", 2),
+      c("Kindred", 5), c("Master Yi", 4), c("Tahm Kench", 2), c("Flora", 3),
+    ],
+  },
+];
 
 const TeamCompsPage = () => {
   return (

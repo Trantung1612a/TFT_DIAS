@@ -2,39 +2,25 @@ import { useState, useEffect, useMemo } from "react";
 import { Search, X, Zap, Shield } from "lucide-react";
 import TFTHeader from "../../components/teamcomps/TFTHeader";
 import RichText from "../../components/RichText";
-import { champions, COSTS } from "../../data/champions";
+import { championService } from "../../service/champion.service";
 
-const API = `${import.meta.env.VITE_API_URL || "/api"}/champions`;
 const CDN_ICON = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill,g_auto,q_auto,f_auto/${id}`;
 const CDN_BANNER = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_512,h_256,c_fill,q_auto:best,f_auto,e_sharpen:60/${id}`;
 
+const COSTS = [1, 2, 3, 4, 5];
 const COST_BORDER = { 1: "border-slate-400", 2: "border-green-500", 3: "border-blue-500", 4: "border-fuchsia-500", 5: "border-amber-400" };
 const COST_BG = { 1: "bg-slate-800", 2: "bg-green-950", 3: "bg-blue-950", 4: "bg-fuchsia-950", 5: "bg-amber-950" };
 const COST_DOT = { 1: "bg-slate-400", 2: "bg-green-500", 3: "bg-blue-500", 4: "bg-fuchsia-500", 5: "bg-amber-400" };
 const COST_LABEL = { 1: "text-slate-400", 2: "text-green-500", 3: "text-blue-400", 4: "text-fuchsia-400", 5: "text-amber-400" };
 const COST_GLOW = { 1: "shadow-slate-400/20", 2: "shadow-green-500/20", 3: "shadow-blue-500/20", 4: "shadow-fuchsia-500/20", 5: "shadow-amber-400/30" };
 
-const ChampionDetailModal = ({ champion: local, onClose }) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`${API}?search=${encodeURIComponent(local.name)}&limit=1`)
-      .then((r) => r.json())
-      .then((json) => {
-        const found = json.data?.champions?.[0];
-        setData(found || null);
-      })
-      .catch(() => setData(null))
-      .finally(() => setLoading(false));
-  }, [local.name]);
-
-  const cost = local.cost;
-  const name = data?.name || local.name;
-  const origins = data?.origins || (local.origin ? [{ name: local.origin }] : []);
-  const classes = data?.classes || (local.cls ? [{ name: local.cls }] : []);
-  const ability = data?.ability;
-  const imgId = data?.base_image_id;
+const ChampionDetailModal = ({ champion, onClose }) => {
+  const cost = champion.cost;
+  const name = champion.name;
+  const origins = champion.origins || [];
+  const classes = champion.classes || [];
+  const ability = champion.ability;
+  const imgId = champion.base_image_id;
 
   return (
     <div
@@ -94,12 +80,7 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
         </div>
 
         <div className="px-4 py-3">
-          {loading ? (
-            <div className="flex items-center gap-2 text-slate-500 text-sm py-4">
-              <span className="w-4 h-4 border-2 border-slate-600 border-t-orange-500 rounded-full animate-spin" />
-              Đang tải thông tin...
-            </div>
-          ) : ability ? (
+          {ability ? (
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <div className={`w-8 h-8 rounded ${COST_BG[cost]} border ${COST_BORDER[cost]} flex items-center justify-center shrink-0`}>
@@ -134,7 +115,8 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
   );
 };
 
-const ChampionCard = ({ name, cost, onClick }) => {
+const ChampionCard = ({ champion, onClick }) => {
+  const { name, cost, base_image_id } = champion;
   const initials = name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
   return (
     <button
@@ -144,15 +126,21 @@ const ChampionCard = ({ name, cost, onClick }) => {
     >
       <div
         className={`w-16 h-16 rounded-md border-2 ${COST_BORDER[cost]} ${COST_BG[cost]}
-          flex flex-col items-center justify-center gap-1
+          flex flex-col items-center justify-center gap-1 overflow-hidden
           group-hover:brightness-125 group-hover:scale-105 transition-all duration-150`}
       >
-        <div className="flex gap-0.5">
-          {Array.from({ length: cost }).map((_, i) => (
-            <span key={i} className={`w-1.5 h-1.5 rounded-full ${COST_DOT[cost]}`} />
-          ))}
-        </div>
-        <span className="text-sm font-bold text-slate-100">{initials}</span>
+        {base_image_id ? (
+          <img src={CDN_ICON(base_image_id)} alt={name} className="w-full h-full object-cover" />
+        ) : (
+          <>
+            <div className="flex gap-0.5">
+              {Array.from({ length: cost }).map((_, i) => (
+                <span key={i} className={`w-1.5 h-1.5 rounded-full ${COST_DOT[cost]}`} />
+              ))}
+            </div>
+            <span className="text-sm font-bold text-slate-100">{initials}</span>
+          </>
+        )}
       </div>
       <span className="text-[11px] text-slate-400 group-hover:text-slate-200 text-center truncate w-16 transition-colors">
         {name}
@@ -179,9 +167,18 @@ const CostBtn = ({ cost, active, onClick }) => (
 );
 
 const ChampionsPage = () => {
+  const [champions, setChampions] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [activeCosts, setActive] = useState(new Set());
   const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    championService.getAll({ limit: 200 })
+      .then((res) => setChampions(res.data?.champions || []))
+      .catch(() => setChampions([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   const toggleCost = (cost) =>
     setActive((prev) => {
@@ -196,7 +193,7 @@ const ChampionsPage = () => {
       const matchSearch = c.name.toLowerCase().includes(search.toLowerCase());
       return matchCost && matchSearch;
     }),
-    [search, activeCosts]
+    [search, activeCosts, champions]
   );
 
   const grouped = useMemo(() => {
@@ -207,13 +204,24 @@ const ChampionsPage = () => {
 
   const showGrouped = activeCosts.size === 0 && search === "";
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#0b141d]">
+        <TFTHeader />
+        <div className="flex-1 flex items-center justify-center">
+          <span className="w-8 h-8 border-4 border-slate-600 border-t-orange-500 rounded-full animate-spin" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0b141d]">
       <TFTHeader activePage="Champions" />
 
       <main className="flex-1 px-8 py-6 max-w-screen-xl mx-auto w-full">
         <h1 className="text-2xl font-bold text-white mb-1">Champions</h1>
-        <p className="text-slate-400 text-sm mb-6">Set 17 · {champions.length} champions</p>
+        <p className="text-slate-400 text-sm mb-6">{champions.length} champions</p>
 
         {/* Filter bar */}
         <div className="flex items-center gap-3 mb-8 flex-wrap">
@@ -249,7 +257,7 @@ const ChampionsPage = () => {
                   </div>
                   <div className="grid grid-cols-8 gap-x-4 gap-y-5">
                     {grouped[cost].map((champ) => (
-                      <ChampionCard key={champ.name} {...champ} onClick={() => setSelected(champ)} />
+                      <ChampionCard key={champ._id} champion={champ} onClick={() => setSelected(champ)} />
                     ))}
                   </div>
                 </section>
@@ -259,12 +267,12 @@ const ChampionsPage = () => {
         ) : filtered.length > 0 ? (
           <div className="grid grid-cols-8 gap-x-4 gap-y-5">
             {filtered.map((champ) => (
-              <ChampionCard key={champ.name} {...champ} onClick={() => setSelected(champ)} />
+              <ChampionCard key={champ._id} champion={champ} onClick={() => setSelected(champ)} />
             ))}
           </div>
         ) : (
           <div className="text-center text-slate-500 py-20 text-sm">
-            No champions found for "{search}"
+            No champions found for &quot;{search}&quot;
           </div>
         )}
       </main>

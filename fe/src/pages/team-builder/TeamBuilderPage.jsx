@@ -4,32 +4,33 @@ import TFTHeader from "../../components/teamcomps/TFTHeader";
 import HexBoard from "../../components/team-builder/HexBoard";
 import SynergyPanel from "../../components/team-builder/SynergyPanel";
 import ChampionPool from "../../components/team-builder/ChampionPool";
+import { championService } from "../../service/champion.service";
 
 const TOTAL_CELLS = 4 * 7; // 28 hex slots
 const MAX_CHAMPS = 9;
 
-const API = `${import.meta.env.VITE_API_URL || "/api"}/champions`;
-
-// ─── Hook: load image IDs from DB ─────────────────────────────────────────────
-function useChampionImages() {
+// ─── Hook: load champions from API ────────────────────────────────────────────
+function useChampions() {
+  const [champions, setChampions] = useState([]);
   const [imageMap, setImageMap] = useState({});
 
   useEffect(() => {
-    fetch(`${API}?limit=200`)
-      .then((r) => r.json())
-      .then((json) => {
-        const champs = json.data?.champions || [];
+    championService.getAll({ limit: 200 })
+      .then((res) => {
+        const champs = res.data?.champions || [];
+        setChampions(champs);
         const map = {};
         champs.forEach((c) => {
           if (c.name && c.base_image_id) map[c.name] = c.base_image_id;
         });
         setImageMap(map);
       })
-      .catch(() => {}); // graceful fail — initials fallback
+      .catch(() => {});
   }, []);
 
-  return imageMap;
+  return { champions, imageMap };
 }
+
 
 // ─── Helper: encode/decode board as URL param ─────────────────────────────────
 function encodeBoard(board) {
@@ -43,7 +44,7 @@ const TeamBuilderPage = () => {
   const [board, setBoard] = useState(Array(TOTAL_CELLS).fill(null));
   const [selectedChamp, setSelectedChamp] = useState(null);
   const [copied, setCopied] = useState(false);
-  const imageMap = useChampionImages();
+  const { champions, imageMap } = useChampions();
 
   // Count champions on board
   const champCount = useMemo(() => board.filter(Boolean).length, [board]);
@@ -220,6 +221,7 @@ const TeamBuilderPage = () => {
 
         {/* ── Champion Pool (bottom) ── */}
         <ChampionPool
+          champions={champions}
           selectedChamp={selectedChamp}
           onSelectChamp={handleSelectChamp}
           boardChamps={board}

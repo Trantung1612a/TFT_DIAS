@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { origins } from "../../data/origins";
-import { classes } from "../../data/classes";
+import { useState, useEffect, useMemo } from "react";
+import { originService } from "../../service/origin.service";
+import { classService } from "../../service/class.service";
 
 // ─── Trait tier thresholds ────────────────────────────────────────────────────
 function getTraitTier(traitData, count) {
@@ -156,12 +156,35 @@ const TraitRow = ({ traitData, count, tier, type }) => {
 
 // ─── Main Synergy Panel ───────────────────────────────────────────────────────
 const SynergyPanel = ({ boardChamps }) => {
+  const [origins, setOrigins] = useState([]);
+  const [classes, setClasses] = useState([]);
+
+  useEffect(() => {
+    Promise.all([
+      originService.getAll({ limit: 200 }),
+      classService.getAll({ limit: 200 }),
+    ])
+      .then(([origRes, classRes]) => {
+        setOrigins(origRes.data?.origins || origRes.data || []);
+        setClasses(classRes.data?.classes || classRes.data || []);
+      })
+      .catch(() => {});
+  }, []);
+
   const activeCounts = useMemo(() => {
     const counts = {};
     boardChamps.forEach((champ) => {
       if (!champ) return;
-      if (champ.origin) counts[champ.origin] = (counts[champ.origin] || 0) + 1;
-      if (champ.cls) counts[champ.cls] = (counts[champ.cls] || 0) + 1;
+      // API format: champ.origins = [{name: "..."}, ...], champ.classes = [{name: "..."}, ...]
+      (champ.origins || []).forEach((o) => {
+        if (o.name) counts[o.name] = (counts[o.name] || 0) + 1;
+      });
+      (champ.classes || []).forEach((c) => {
+        if (c.name) counts[c.name] = (counts[c.name] || 0) + 1;
+      });
+      // Fallback for old format
+      if (champ.origin && !champ.origins?.length) counts[champ.origin] = (counts[champ.origin] || 0) + 1;
+      if (champ.cls && !champ.classes?.length) counts[champ.cls] = (counts[champ.cls] || 0) + 1;
     });
     return counts;
   }, [boardChamps]);
@@ -193,7 +216,7 @@ const SynergyPanel = ({ boardChamps }) => {
     });
 
     return rows;
-  }, [activeCounts]);
+  }, [activeCounts, origins, classes]);
 
   const champCount = boardChamps.filter(Boolean).length;
   const activeTraitCount = traitRows.filter((r) => r.tier).length;
