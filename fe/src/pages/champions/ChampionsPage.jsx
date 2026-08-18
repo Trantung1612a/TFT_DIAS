@@ -4,20 +4,18 @@ import TFTHeader from "../../components/teamcomps/TFTHeader";
 import RichText from "../../components/RichText";
 import { champions, COSTS } from "../../data/champions";
 
-const API        = `${import.meta.env.VITE_API_URL || "/api"}/champions`;
-// Square icon for team comp / champion card grid
-const CDN_ICON   = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill,g_auto,q_auto,f_auto/${id}`;
-// Full landscape banner for detail popup
+const API = `${import.meta.env.VITE_API_URL || "/api"}/champions`;
+const CDN_ICON = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill,g_auto,q_auto,f_auto/${id}`;
 const CDN_BANNER = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_512,h_256,c_fill,q_auto:best,f_auto,e_sharpen:60/${id}`;
 
-const COST_BORDER = { 1:"border-slate-400", 2:"border-green-500", 3:"border-blue-500", 4:"border-fuchsia-500", 5:"border-amber-400" };
-const COST_BG     = { 1:"bg-slate-800",     2:"bg-green-950",     3:"bg-blue-950",     4:"bg-fuchsia-950",     5:"bg-amber-950"    };
-const COST_DOT    = { 1:"bg-slate-400",     2:"bg-green-500",     3:"bg-blue-500",     4:"bg-fuchsia-500",     5:"bg-amber-400"    };
-const COST_LABEL  = { 1:"text-slate-400",   2:"text-green-500",   3:"text-blue-400",   4:"text-fuchsia-400",  5:"text-amber-400"   };
-const COST_GLOW   = { 1:"shadow-slate-400/20", 2:"shadow-green-500/20", 3:"shadow-blue-500/20", 4:"shadow-fuchsia-500/20", 5:"shadow-amber-400/30" };
+const COST_BORDER = { 1: "border-slate-400", 2: "border-green-500", 3: "border-blue-500", 4: "border-fuchsia-500", 5: "border-amber-400" };
+const COST_BG = { 1: "bg-slate-800", 2: "bg-green-950", 3: "bg-blue-950", 4: "bg-fuchsia-950", 5: "bg-amber-950" };
+const COST_DOT = { 1: "bg-slate-400", 2: "bg-green-500", 3: "bg-blue-500", 4: "bg-fuchsia-500", 5: "bg-amber-400" };
+const COST_LABEL = { 1: "text-slate-400", 2: "text-green-500", 3: "text-blue-400", 4: "text-fuchsia-400", 5: "text-amber-400" };
+const COST_GLOW = { 1: "shadow-slate-400/20", 2: "shadow-green-500/20", 3: "shadow-blue-500/20", 4: "shadow-fuchsia-500/20", 5: "shadow-amber-400/30" };
 
 const ChampionDetailModal = ({ champion: local, onClose }) => {
-  const [data, setData]       = useState(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,12 +29,12 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
       .finally(() => setLoading(false));
   }, [local.name]);
 
-  const cost    = local.cost;
-  const name    = data?.name    || local.name;
+  const cost = local.cost;
+  const name = data?.name || local.name;
   const origins = data?.origins || (local.origin ? [{ name: local.origin }] : []);
-  const classes = data?.classes || (local.cls    ? [{ name: local.cls    }] : []);
+  const classes = data?.classes || (local.cls ? [{ name: local.cls }] : []);
   const ability = data?.ability;
-  const imgId   = data?.base_image_id;
+  const imgId = data?.base_image_id;
 
   return (
     <div
@@ -45,11 +43,9 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
     >
       <div className={`bg-[#0f1b27] border-2 ${COST_BORDER[cost]} rounded-2xl w-full max-w-md shadow-2xl ${COST_GLOW[cost]} overflow-hidden`}>
 
-        {/* ── Hero banner: blurred backdrop + sharp portrait ── */}
         <div className="relative h-52 overflow-hidden">
           {imgId ? (
             <>
-              {/* Full-width landscape banner */}
               <img
                 src={CDN_BANNER(imgId)}
                 alt={name}
@@ -64,15 +60,12 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
             </div>
           )}
 
-          {/* Gradient bottom fade */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f1b27] via-transparent to-black/10" />
 
-          {/* Close button */}
           <button onClick={onClose} className="absolute top-3 right-3 p-1.5 rounded-lg bg-black/50 backdrop-blur-sm hover:bg-black/70 text-slate-300 hover:text-white transition-colors">
             <X size={16} />
           </button>
 
-          {/* Name + cost overlaid */}
           <div className="absolute bottom-3 left-4 right-14">
             <h2 className="text-2xl font-black text-white drop-shadow-lg leading-tight">{name}</h2>
             <div className="flex items-center gap-2 mt-0.5">
@@ -100,7 +93,6 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
           ))}
         </div>
 
-        {/* ── Ability section ── */}
         <div className="px-4 py-3">
           {loading ? (
             <div className="flex items-center gap-2 text-slate-500 text-sm py-4">
@@ -109,11 +101,10 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
             </div>
           ) : ability ? (
             <div className="space-y-3">
-              {/* Ability header */}
               <div className="flex items-center gap-2">
                 <div className={`w-8 h-8 rounded ${COST_BG[cost]} border ${COST_BORDER[cost]} flex items-center justify-center shrink-0`}>
                   {ability.type === "active"
-                    ? <Zap   size={14} className={COST_LABEL[cost]} />
+                    ? <Zap size={14} className={COST_LABEL[cost]} />
                     : <Shield size={14} className={COST_LABEL[cost]} />}
                 </div>
                 <div>
@@ -124,7 +115,6 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
                 </div>
               </div>
 
-              {/* Description with RichText */}
               <div className="bg-slate-800/50 rounded-lg px-4 py-3 border border-slate-700/50">
                 <RichText
                   text={ability.description}
@@ -144,7 +134,6 @@ const ChampionDetailModal = ({ champion: local, onClose }) => {
   );
 };
 
-// ── Champion card ─────────────────────────────────────────────────────────────
 const ChampionCard = ({ name, cost, onClick }) => {
   const initials = name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
   return (
@@ -172,15 +161,13 @@ const ChampionCard = ({ name, cost, onClick }) => {
   );
 };
 
-// ── Cost filter button ────────────────────────────────────────────────────────
 const CostBtn = ({ cost, active, onClick }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold border transition-colors ${
-      active
+    className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold border transition-colors ${active
         ? `${COST_BG[cost]} ${COST_BORDER[cost]} ${COST_LABEL[cost]}`
         : "bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-500"
-    }`}
+      }`}
   >
     <div className="flex gap-0.5">
       {Array.from({ length: cost }).map((_, i) => (
@@ -191,11 +178,10 @@ const CostBtn = ({ cost, active, onClick }) => (
   </button>
 );
 
-// ── Page ──────────────────────────────────────────────────────────────────────
 const ChampionsPage = () => {
-  const [search, setSearch]       = useState("");
-  const [activeCosts, setActive]  = useState(new Set());
-  const [selected, setSelected]   = useState(null);
+  const [search, setSearch] = useState("");
+  const [activeCosts, setActive] = useState(new Set());
+  const [selected, setSelected] = useState(null);
 
   const toggleCost = (cost) =>
     setActive((prev) => {
@@ -206,7 +192,7 @@ const ChampionsPage = () => {
 
   const filtered = useMemo(() =>
     champions.filter((c) => {
-      const matchCost   = activeCosts.size === 0 || activeCosts.has(c.cost);
+      const matchCost = activeCosts.size === 0 || activeCosts.has(c.cost);
       const matchSearch = c.name.toLowerCase().includes(search.toLowerCase());
       return matchCost && matchSearch;
     }),

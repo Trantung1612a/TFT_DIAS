@@ -4,10 +4,9 @@ import { NavLink } from "react-router-dom";
 const navItems = [
   { label: "Team Comps", to: "/team-comps" },
   { label: "Champions", to: "/champions" },
-  { label: "Tier Lists", to: "/tier-lists" },
-  { label: "Item Builder", to: "/item-builder" },
+  { label: "Database", to: "/database" },
   { label: "Team Builder", to: "/team-builder" },
-  { label: "Champ ", to: "/admin/champions" },
+  { label: "Admin", to: "/admin/champions" },
 ];
 
 const TFTHeader = () => {

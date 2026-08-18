@@ -4,12 +4,12 @@ import TFTHeader from "../../components/teamcomps/TFTHeader";
 import RichText from "../../components/RichText";
 
 const BASE = import.meta.env.VITE_API_URL || "/api";
-const API  = `${BASE}/champions`;
-const CDN  = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill/${id}`;
+const API = `${BASE}/champions`;
+const CDN = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill/${id}`;
 // Square icon for team comp grid (g_auto smart-crops the landscape source)
-const CDN_ICON   = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill,g_auto,q_auto,f_auto/${id}`;
+const CDN_ICON = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_80,h_80,c_fill,g_auto,q_auto,f_auto/${id}`;
 // Landscape thumb for table row
-const CDN_THUMB  = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_128,h_64,c_fill,q_auto,f_auto/${id}`;
+const CDN_THUMB = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_128,h_64,c_fill,q_auto,f_auto/${id}`;
 // Full landscape banner for detail popup (2× native, sharpened)
 const CDN_BANNER = (id) => `https://res.cloudinary.com/ecoturre/image/upload/w_512,h_256,c_fill,q_auto:best,f_auto,e_sharpen:60/${id}`;
 
@@ -20,10 +20,10 @@ const COST_COLORS = {
   4: "bg-purple-700 text-purple-100",
   5: "bg-yellow-600 text-yellow-100",
 };
-const COST_BORDER = { 1:"border-slate-400", 2:"border-green-500", 3:"border-blue-500", 4:"border-fuchsia-500", 5:"border-amber-400" };
-const COST_BG     = { 1:"bg-slate-800",     2:"bg-green-950",     3:"bg-blue-950",     4:"bg-fuchsia-950",     5:"bg-amber-950"    };
-const COST_DOT    = { 1:"bg-slate-400",     2:"bg-green-500",     3:"bg-blue-500",     4:"bg-fuchsia-500",     5:"bg-amber-400"    };
-const COST_LABEL  = { 1:"text-slate-400",   2:"text-green-500",   3:"text-blue-400",   4:"text-fuchsia-400",  5:"text-amber-400"   };
+const COST_BORDER = { 1: "border-slate-400", 2: "border-green-500", 3: "border-blue-500", 4: "border-fuchsia-500", 5: "border-amber-400" };
+const COST_BG = { 1: "bg-slate-800", 2: "bg-green-950", 3: "bg-blue-950", 4: "bg-fuchsia-950", 5: "bg-amber-950" };
+const COST_DOT = { 1: "bg-slate-400", 2: "bg-green-500", 3: "bg-blue-500", 4: "bg-fuchsia-500", 5: "bg-amber-400" };
+const COST_LABEL = { 1: "text-slate-400", 2: "text-green-500", 3: "text-blue-400", 4: "text-fuchsia-400", 5: "text-amber-400" };
 
 const EMPTY_FORM = {
   name: "", set: "", cost: 1, slot: "",
@@ -34,12 +34,11 @@ const EMPTY_FORM = {
 };
 
 const fetchList = async (endpoint) => {
-  const res  = await fetch(`${BASE}/${endpoint}?limit=200`);
+  const res = await fetch(`${BASE}/${endpoint}?limit=200`);
   const json = await res.json();
   return json.data?.[endpoint] || [];
 };
 
-// ── Image uploader ───────────────────────────────────────────────────────────
 const ImageUploader = ({ value, onChange }) => {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
@@ -52,7 +51,7 @@ const ImageUploader = ({ value, onChange }) => {
     const fd = new FormData();
     fd.append("image", file);
     try {
-      const res  = await fetch(`${BASE}/upload/champion`, { method: "POST", body: fd });
+      const res = await fetch(`${BASE}/upload/champion`, { method: "POST", body: fd });
       const json = await res.json();
       if (!res.ok) throw new Error(json.message || "Upload thất bại");
       onChange(json.public_id);
@@ -67,7 +66,6 @@ const ImageUploader = ({ value, onChange }) => {
     <div>
       <label className="block text-xs text-slate-400 mb-1 font-medium">Ảnh Champion</label>
 
-      {/* Drop zone / preview */}
       <div
         role="button"
         tabIndex={0}
@@ -93,7 +91,6 @@ const ImageUploader = ({ value, onChange }) => {
           </div>
         )}
 
-        {/* Uploading overlay */}
         {uploading && (
           <div className="absolute inset-0 bg-black/65 flex flex-col items-center justify-center gap-2">
             <span className="w-6 h-6 border-2 border-slate-600 border-t-orange-500 rounded-full animate-spin" />
@@ -118,7 +115,6 @@ const ImageUploader = ({ value, onChange }) => {
   );
 };
 
-// ── Multi-select with checkboxes ────────────────────────────────────────────
 const MultiSelect = ({ label, options, selected, onChange, loading }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -185,13 +181,13 @@ const MultiSelect = ({ label, options, selected, onChange, loading }) => {
 
 // ── Champion Detail Popup (read-only) ───────────────────────────────────────
 const ChampionDetailPopup = ({ champ, onClose, onEdit }) => {
-  const cost    = champ.cost;
+  const cost = champ.cost;
   const ability = champ.ability;
-  const imgId   = champ.base_image_id;
-  const border  = COST_BORDER[cost] || "border-slate-600";
-  const bg      = COST_BG[cost]     || "bg-slate-800";
-  const dot     = COST_DOT[cost]    || "bg-slate-400";
-  const label   = COST_LABEL[cost]  || "text-slate-400";
+  const imgId = champ.base_image_id;
+  const border = COST_BORDER[cost] || "border-slate-600";
+  const bg = COST_BG[cost] || "bg-slate-800";
+  const dot = COST_DOT[cost] || "bg-slate-400";
+  const label = COST_LABEL[cost] || "text-slate-400";
 
   return (
     <div
@@ -200,11 +196,9 @@ const ChampionDetailPopup = ({ champ, onClose, onEdit }) => {
     >
       <div className={`bg-[#0f1b27] border-2 ${border} rounded-2xl w-full max-w-md overflow-hidden shadow-2xl`}>
 
-        {/* ── Hero banner: blurred backdrop + sharp portrait ── */}
         <div className="relative h-52 overflow-hidden">
           {imgId ? (
             <>
-              {/* Full-width landscape banner */}
               <img
                 src={CDN_BANNER(imgId)}
                 alt={champ.name}
@@ -219,10 +213,8 @@ const ChampionDetailPopup = ({ champ, onClose, onEdit }) => {
             </div>
           )}
 
-          {/* Gradient bottom fade */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f1b27] via-transparent to-black/10" />
 
-          {/* Action buttons */}
           <div className="absolute top-3 right-3 flex gap-1.5">
             <button onClick={onEdit} className="p-1.5 rounded-lg bg-black/50 backdrop-blur-sm hover:bg-black/70 text-slate-300 hover:text-white transition-colors" title="Chỉnh sửa">
               <Pencil size={14} />
@@ -302,21 +294,21 @@ const ConfirmDialog = ({ name, onConfirm, onCancel }) => (
 
 // ── Modal Form ──────────────────────────────────────────────────────────────
 const ChampionModal = ({ initial, onSave, onClose }) => {
-  const [form, setForm]       = useState(initial || EMPTY_FORM);
+  const [form, setForm] = useState(initial || EMPTY_FORM);
   const [origins, setOrigins] = useState([]);
   const [classes, setClasses] = useState([]);
   const [loadingRefs, setLoadingRefs] = useState(true);
-  const [saving, setSaving]   = useState(false);
-  const [error, setError]     = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     Promise.all([fetchList("origins"), fetchList("classes")])
       .then(([o, c]) => { setOrigins(o); setClasses(c); })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoadingRefs(false));
   }, []);
 
-  const setField   = (field, value) => setForm((f) => ({ ...f, [field]: value }));
+  const setField = (field, value) => setForm((f) => ({ ...f, [field]: value }));
   const setAbility = (field, value) => setForm((f) => ({ ...f, ability: { ...f.ability, [field]: value } }));
 
   const handleSubmit = async (e) => {
@@ -325,16 +317,16 @@ const ChampionModal = ({ initial, onSave, onClose }) => {
     setError("");
     const body = {
       ...form,
-      cost:   Number(form.cost),
-      slot:   form.slot !== "" ? Number(form.slot) : undefined,
+      cost: Number(form.cost),
+      slot: form.slot !== "" ? Number(form.slot) : undefined,
       origins: form.origins.length ? form.origins : undefined,
       classes: form.classes.length ? form.classes : undefined,
     };
     try {
-      const res  = await fetch(initial?._id ? `${API}/${initial._id}` : API, {
-        method:  initial?._id ? "PUT" : "POST",
+      const res = await fetch(initial?._id ? `${API}/${initial._id}` : API, {
+        method: initial?._id ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(body),
+        body: JSON.stringify(body),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.message || "Request failed");
@@ -446,17 +438,17 @@ const ChampionModal = ({ initial, onSave, onClose }) => {
 
 // ── Main Page ───────────────────────────────────────────────────────────────
 const ChampionCrudPage = () => {
-  const [champions, setChampions]   = useState([]);
-  const [total, setTotal]           = useState(0);
-  const [page, setPage]             = useState(1);
-  const [search, setSearch]         = useState("");
+  const [champions, setChampions] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [costFilter, setCostFilter] = useState("");
-  const [loading, setLoading]       = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const [modal, setModal]               = useState(null);
+  const [modal, setModal] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
-  const [detailChamp, setDetailChamp]   = useState(null);
-  const [toast, setToast]               = useState("");
+  const [detailChamp, setDetailChamp] = useState(null);
+  const [toast, setToast] = useState("");
 
   const LIMIT = 20;
 
@@ -464,9 +456,9 @@ const ChampionCrudPage = () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({ page, limit: LIMIT });
-      if (search)     params.set("search", search);
+      if (search) params.set("search", search);
       if (costFilter) params.set("cost", costFilter);
-      const res  = await fetch(`${API}?${params}`);
+      const res = await fetch(`${API}?${params}`);
       const json = await res.json();
       setChampions(json.data?.champions || []);
       setTotal(json.data?.total || 0);

@@ -3,7 +3,6 @@ import TFTHeader from "../../components/teamcomps/TFTHeader";
 import { origins } from "../../data/origins";
 import { classes } from "../../data/classes";
 
-// ── Breakpoint / Tier row ──────────────────────────────────────────────────
 const BreakpointRow = ({ number, effect, dot }) => (
   <li className="flex items-start gap-2 text-xs">
     <div className="flex items-center gap-1 shrink-0 mt-0.5">
@@ -15,11 +14,10 @@ const BreakpointRow = ({ number, effect, dot }) => (
   </li>
 );
 
-// ── Trait / Class card ──────────────────────────────────────────────────────
 const TraitCard = ({ name, set, description, breakpoints, tiers, color, border, dot }) => {
   const points = breakpoints || tiers;
-  const label  = breakpoints ? "Breakpoints" : "Tiers";
-  const abbr   = name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+  const label = breakpoints ? "Breakpoints" : "Tiers";
+  const abbr = name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 
   return (
     <div className={`rounded-xl border ${border} bg-gradient-to-br ${color} p-5 flex flex-col gap-4`}>
@@ -57,11 +55,10 @@ const TraitCard = ({ name, set, description, breakpoints, tiers, color, border, 
 const Tab = ({ label, count, active, onClick }) => (
   <button
     onClick={onClick}
-    className={`px-5 py-2 text-sm font-semibold rounded-t-lg border-b-2 transition-colors ${
-      active
+    className={`px-5 py-2 text-sm font-semibold rounded-t-lg border-b-2 transition-colors ${active
         ? "text-white border-orange-500 bg-slate-800/40"
         : "text-slate-400 border-transparent hover:text-white"
-    }`}
+      }`}
   >
     {label}
     <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${active ? "bg-orange-500/20 text-orange-300" : "bg-slate-700 text-slate-500"}`}>
@@ -74,7 +71,7 @@ const Tab = ({ label, count, active, onClick }) => (
 const DatabasePage = () => {
   const [tab, setTab] = useState("origins");
 
-  const items  = tab === "origins" ? origins : classes;
+  const items = tab === "origins" ? origins : classes;
   const isOrig = tab === "origins";
 
   return (

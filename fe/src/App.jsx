@@ -14,6 +14,7 @@ import TeamCompsPage from "./pages/teamcomps/TeamCompsPage";
 import ChampionsPage from "./pages/champions/ChampionsPage";
 import DatabasePage      from "./pages/database/DatabasePage";
 import ChampionCrudPage  from "./pages/admin/ChampionCrudPage";
+import TeamBuilderPage   from "./pages/team-builder/TeamBuilderPage";
 import NotFoundPage      from "./pages/NotFoundPage";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/team-comps" element={<TeamCompsPage />} />
           <Route path="/champions"  element={<ChampionsPage />} />
           <Route path="/database"         element={<DatabasePage />} />
+          <Route path="/team-builder"     element={<TeamBuilderPage />} />
           <Route path="/admin/champions"  element={<ChampionCrudPage />} />
 
           <Route element={<SimpleLayout />}>
