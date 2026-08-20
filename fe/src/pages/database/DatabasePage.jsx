@@ -10,7 +10,7 @@ const BreakpointRow = ({ number, effect, dot }) => (
         <span key={i} className={`w-1.5 h-1.5 rounded-full ${dot}`} />
       ))}
     </div>
-    <span className="text-slate-300">{effect}</span>
+    <span style={{ color: "#A89880", fontFamily: "'Inter', sans-serif" }}>{effect}</span>
   </li>
 );
 
@@ -73,13 +73,25 @@ const TraitCard = ({ item, index }) => {
 const Tab = ({ label, count, active, onClick }) => (
   <button
     onClick={onClick}
-    className={`px-5 py-2 text-sm font-semibold rounded-t-lg border-b-2 transition-colors ${active
-        ? "text-white border-orange-500 bg-slate-800/40"
-        : "text-slate-400 border-transparent hover:text-white"
-      }`}
+    className="px-5 py-2 text-sm font-semibold border-b-2 transition-all duration-200"
+    style={{
+      fontFamily: "'Cinzel', Georgia, serif",
+      fontSize: "12px",
+      letterSpacing: "0.06em",
+      color: active ? "#F0E6D2" : "#A89880",
+      borderBottomColor: active ? "#C89B3C" : "transparent",
+      background: active ? "rgba(200,155,60,0.06)" : "transparent",
+    }}
   >
     {label}
-    <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${active ? "bg-orange-500/20 text-orange-300" : "bg-slate-700 text-slate-500"}`}>
+    <span
+      className="ml-2 text-xs px-1.5 py-0.5 rounded"
+      style={{
+        background: active ? "rgba(200,155,60,0.15)" : "rgba(255,255,255,0.05)",
+        color: active ? "#C89B3C" : "#5C5040",
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
       {count}
     </span>
   </button>
@@ -110,25 +122,55 @@ const DatabasePage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#0b141d]">
+      <div className="min-h-screen flex flex-col" style={{ background: "linear-gradient(180deg, #0B0C10 0%, #1A1C29 60%, #0B0C10 100%)" }}>
         <TFTHeader />
         <div className="flex-1 flex items-center justify-center">
-          <span className="w-8 h-8 border-4 border-slate-600 border-t-orange-500 rounded-full animate-spin" />
+          <span
+            className="w-10 h-10 rounded-full animate-spin"
+            style={{ border: "3px solid rgba(200,155,60,0.15)", borderTopColor: "#C89B3C" }}
+          />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b141d]">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: "linear-gradient(180deg, #0B0C10 0%, #1A1C29 60%, #0B0C10 100%)" }}
+    >
       <TFTHeader />
 
       <main className="flex-1 px-8 py-6 max-w-screen-xl mx-auto w-full">
-        <h1 className="text-2xl font-bold text-white mb-1">Database</h1>
-        <p className="text-slate-400 text-sm mb-6">Origins &amp; Classes reference</p>
+        {/* Page header */}
+        <div className="mb-6">
+          <span
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: "'Cinzel', Georgia, serif", color: "#8A6B28" }}
+          >
+            ✦ Mythic Archives
+          </span>
+          <h1
+            className="text-2xl font-bold mt-1"
+            style={{
+              fontFamily: "'Cinzel', Georgia, serif",
+              color: "#F0E6D2",
+              letterSpacing: "0.04em",
+              textShadow: "0 0 24px rgba(200,155,60,0.2)",
+            }}
+          >
+            Database
+          </h1>
+          <p className="text-sm mt-1" style={{ color: "#A89880", fontFamily: "'Inter', sans-serif" }}>
+            Origins &amp; Classes reference
+          </p>
+        </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 border-b border-slate-800 mb-8">
+        <div
+          className="flex gap-1 mb-8"
+          style={{ borderBottom: "1px solid rgba(200,155,60,0.2)" }}
+        >
           <Tab
             label="Origins"
             count={origins.length}
@@ -144,7 +186,10 @@ const DatabasePage = () => {
         </div>
 
         {/* Section heading */}
-        <p className="text-slate-500 text-xs uppercase tracking-widest mb-4">
+        <p
+          className="text-xs uppercase tracking-widest mb-5"
+          style={{ color: "#5C5040", fontFamily: "'Cinzel', Georgia, serif", letterSpacing: "0.1em" }}
+        >
           {isOrig
             ? "Origins grant bonuses when you field enough champions sharing the same origin."
             : "Classes grant bonuses based on how many champions share the same class."}

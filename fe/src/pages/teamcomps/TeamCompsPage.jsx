@@ -1,107 +1,162 @@
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search, Scroll } from "lucide-react";
 import TFTHeader from "../../components/teamcomps/TFTHeader";
 import TFTSidebar from "../../components/teamcomps/TFTSidebar";
 import CompRow from "../../components/teamcomps/CompRow";
 
-// TODO: Replace with API fetch when backend endpoint is ready
-const c = (name, cost, stars) => ({ name, cost, stars });
-const teamComps = [
-  {
-    tier: "S",
-    trend: "up",
-    name: "Space Groove Replicators",
-    tags: [
-      { label: "Fast 8", type: "fast" },
-      { label: "Emblem", type: "emblem" },
-    ],
-    champions: [
-      c("Gwen", 4), c("Pantheon", 1), c("Ornn", 3), c("Nami", 1),
-      c("Riven", 2), c("Tahm Kench", 2), c("Blitzcrank", 4), c("Shen", 5),
-    ],
-  },
-  {
-    tier: "S",
-    name: "Dark Stars",
-    tags: [
-      { label: "Fast 8", type: "fast" },
-      { label: "Emblem", type: "emblem" },
-    ],
-    champions: [
-      c("Chogath", 1), c("Mordekaiser", 4), c("Kaisa", 4), c("Aurelion Sol", 5),
-      c("Karma", 2), c("Tahm Kench", 2), c("Thresh", 3), c("Jhin", 5),
-    ],
-  },
-  {
-    tier: "S",
-    name: "Meeple Voyagers",
-    tags: [{ label: "Slow Roll (6)", type: "slow" }],
-    champions: [
-      c("Poppy", 1), c("Gnar", 1, 3), c("Meeple", 2), c("Karma", 2),
-      c("Rammus", 3), c("Thresh", 3), c("Bard", 4), c("Jhin", 5),
-    ],
-  },
-  {
-    tier: "S",
-    name: "Primordian Challengers",
-    tags: [{ label: "Slow Roll (6)", type: "slow" }],
-    champions: [
-      c("Briar", 1), c("RekSai", 2), c("Akali", 3, 3), c("Belveth", 4, 3),
-      c("Jinx", 4, 3), c("Maokai", 3), c("Rhaast", 5, 3), c("Kindred", 5, 3),
-    ],
-  },
-  {
-    tier: "S",
-    name: "Psionic Marauders",
-    tags: [{ label: "Fast 8", type: "fast" }],
-    champions: [
-      c("Belveth", 4), c("Gragas", 1), c("Maokai", 3), c("Urgot", 2),
-      c("Kindred", 5), c("Master Yi", 4), c("Tahm Kench", 2), c("Flora", 3),
-    ],
-  },
-];
+// TODO: Connect to API — teamComps data will be fetched from backend
+const teamComps = [];
 
 const TeamCompsPage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b141d]">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: "linear-gradient(180deg, #0B0C10 0%, #1A1C29 60%, #0B0C10 100%)" }}
+    >
       <TFTHeader />
 
       <div className="flex flex-1">
         <TFTSidebar />
 
         <main className="flex-1 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold text-white">TFT Meta Team Comps Tier List</h1>
+          {/* Page Header */}
+          <div className="flex items-start justify-between mb-6">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <Scroll size={14} style={{ color: "#C89B3C" }} />
+                <span
+                  className="text-xs uppercase tracking-widest"
+                  style={{ fontFamily: "'Cinzel', Georgia, serif", color: "#8A6B28" }}
+                >
+                  Season XVI · Mythic Archives
+                </span>
+              </div>
+              <h1
+                className="text-2xl font-bold"
+                style={{
+                  fontFamily: "'Cinzel', Georgia, serif",
+                  color: "#F0E6D2",
+                  letterSpacing: "0.04em",
+                  textShadow: "0 0 24px rgba(200,155,60,0.25)",
+                }}
+              >
+                Meta Team Comps Tier List
+              </h1>
+            </div>
+
+            {/* Badges */}
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-1.5 bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-700">
-                Set 17
-                <ChevronDown size={14} />
+              <button
+                className="flex items-center gap-1.5 text-sm rounded px-3 py-1.5 transition-all duration-200"
+                style={{
+                  background: "rgba(200,155,60,0.08)",
+                  border: "1px solid rgba(200,155,60,0.25)",
+                  color: "#F0E6D2",
+                  fontFamily: "'Cinzel', Georgia, serif",
+                  fontSize: "11px",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                Season XVI
+                <ChevronDown size={13} style={{ color: "#C89B3C" }} />
               </button>
-              <span className="bg-blue-900/40 text-blue-300 border border-blue-800 rounded px-3 py-1.5 text-sm font-medium">
-                Patch 17.6
+              <span
+                className="rounded px-3 py-1.5 text-sm font-medium"
+                style={{
+                  background: "rgba(10,200,185,0.1)",
+                  border: "1px solid rgba(10,200,185,0.3)",
+                  color: "#0AC8B9",
+                  fontFamily: "'Cinzel', Georgia, serif",
+                  fontSize: "11px",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                Patch 16.1
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 mb-4 bg-slate-900/60 border border-slate-800 rounded-lg p-3">
-            <button className="flex items-center gap-1.5 bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-700">
+          {/* Filter bar */}
+          <div
+            className="flex items-center gap-3 mb-5 rounded-lg p-3"
+            style={{
+              background: "rgba(13,15,25,0.7)",
+              border: "1px solid rgba(200,155,60,0.15)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+            }}
+          >
+            <button
+              className="flex items-center gap-1.5 text-sm rounded px-3 py-1.5 transition-all duration-200"
+              style={{
+                background: "rgba(200,155,60,0.05)",
+                border: "1px solid rgba(200,155,60,0.2)",
+                color: "#A89880",
+                fontFamily: "'Inter', sans-serif",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.45)";
+                e.currentTarget.style.color = "#F0E6D2";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.2)";
+                e.currentTarget.style.color = "#A89880";
+              }}
+            >
               Champions
-              <ChevronDown size={14} />
+              <ChevronDown size={13} style={{ color: "#C89B3C" }} />
             </button>
-            <button className="flex items-center gap-1.5 bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-700">
+            <button
+              className="flex items-center gap-1.5 text-sm rounded px-3 py-1.5 transition-all duration-200"
+              style={{
+                background: "rgba(200,155,60,0.05)",
+                border: "1px solid rgba(200,155,60,0.2)",
+                color: "#A89880",
+                fontFamily: "'Inter', sans-serif",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.45)";
+                e.currentTarget.style.color = "#F0E6D2";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.2)";
+                e.currentTarget.style.color = "#A89880";
+              }}
+            >
               Traits
-              <ChevronDown size={14} />
+              <ChevronDown size={13} style={{ color: "#C89B3C" }} />
             </button>
-            <div className="flex-1 flex items-center gap-2 bg-slate-800 border border-slate-700 rounded px-3 py-1.5">
-              <Search size={14} className="text-slate-500" />
+
+            {/* Search */}
+            <div
+              className="flex-1 flex items-center gap-2 rounded px-3 py-1.5 transition-all duration-200"
+              style={{
+                background: "rgba(200,155,60,0.04)",
+                border: "1px solid rgba(200,155,60,0.15)",
+              }}
+              onFocusCapture={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.45)";
+                e.currentTarget.style.boxShadow = "0 0 12px rgba(200,155,60,0.1)";
+              }}
+              onBlurCapture={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.15)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <Search size={14} style={{ color: "#8A6B28" }} />
               <input
                 type="text"
-                placeholder="Search..."
-                className="bg-transparent text-sm text-slate-200 placeholder:text-slate-500 outline-none w-full"
+                placeholder="Search team comps..."
+                className="bg-transparent text-sm outline-none w-full"
+                style={{
+                  color: "#F0E6D2",
+                  fontFamily: "'Inter', sans-serif",
+                }}
               />
             </div>
           </div>
 
-          <div className="space-y-3">
+          {/* Comp list */}
+          <div className="space-y-2.5">
             {teamComps.map((comp) => (
               <CompRow key={comp.name} comp={comp} />
             ))}

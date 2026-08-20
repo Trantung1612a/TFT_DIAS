@@ -149,8 +149,8 @@ const TeamBuilderPage = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col bg-[#0b141d]"
-      // Click outside board/pool to cancel hold
+      className="min-h-screen flex flex-col"
+      style={{ background: "linear-gradient(180deg, #0B0C10 0%, #1A1C29 60%, #0B0C10 100%)" }}
       onClick={(e) => {
         if (e.target === e.currentTarget) setSelectedChamp(null);
       }}
@@ -161,11 +161,27 @@ const TeamBuilderPage = () => {
         {/* ── Page header ── */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-black text-white">Team Builder</h1>
-            <p className="text-slate-400 text-sm mt-0.5">
-              Set 17 · Đặt champions lên board để xem trait synergies
+            <span
+              className="text-xs uppercase tracking-widest"
+              style={{ fontFamily: "'Cinzel', Georgia, serif", color: "#8A6B28" }}
+            >
+              ✦ Mythic Archives
+            </span>
+            <h1
+              className="text-2xl font-bold mt-1"
+              style={{
+                fontFamily: "'Cinzel', Georgia, serif",
+                color: "#F0E6D2",
+                letterSpacing: "0.04em",
+                textShadow: "0 0 24px rgba(200,155,60,0.2)",
+              }}
+            >
+              Team Builder
+            </h1>
+            <p className="text-sm mt-0.5" style={{ color: "#A89880", fontFamily: "'Inter', sans-serif" }}>
+              Season XVI · Đặt champions lên board để xem trait synergies
               {selectedChamp && (
-                <span className="ml-3 text-orange-400 font-semibold animate-pulse">
+                <span className="ml-3 font-semibold animate-pulse" style={{ color: "#C89B3C" }}>
                   ✦ Đang cầm: {selectedChamp.name} — click ô hex để đặt · Esc để hủy
                 </span>
               )}
@@ -176,16 +192,30 @@ const TeamBuilderPage = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-sm px-4 py-2 rounded-lg transition-colors"
+              className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition-all duration-200"
+              style={{
+                background: "rgba(200,155,60,0.08)",
+                border: "1px solid rgba(200,155,60,0.25)",
+                color: "#F0E6D2",
+                fontFamily: "'Inter', sans-serif",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.5)";
+                e.currentTarget.style.boxShadow = "0 0 12px rgba(200,155,60,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.25)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             >
               {copied ? (
                 <>
-                  <Check size={15} className="text-green-400" />
-                  <span className="text-green-400">Đã copy!</span>
+                  <Check size={15} style={{ color: "#0AC8B9" }} />
+                  <span style={{ color: "#0AC8B9" }}>Đã copy!</span>
                 </>
               ) : (
                 <>
-                  <Share2 size={15} />
+                  <Share2 size={15} style={{ color: "#C89B3C" }} />
                   Chia sẻ
                 </>
               )}
@@ -194,7 +224,21 @@ const TeamBuilderPage = () => {
             <button
               onClick={handleClear}
               disabled={champCount === 0 && !selectedChamp}
-              className="flex items-center gap-2 bg-red-900/40 hover:bg-red-900/70 border border-red-800 text-red-300 text-sm px-4 py-2 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{
+                background: "rgba(140,22,22,0.15)",
+                border: "1px solid rgba(140,22,22,0.4)",
+                color: "#C55",
+                fontFamily: "'Inter', sans-serif",
+              }}
+              onMouseEnter={(e) => {
+                if (!e.currentTarget.disabled) {
+                  e.currentTarget.style.background = "rgba(140,22,22,0.3)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(140,22,22,0.15)";
+              }}
             >
               <Trash2 size={15} />
               Xóa board
@@ -229,13 +273,21 @@ const TeamBuilderPage = () => {
         />
 
         {/* ── Tip bar ── */}
-        <div className="flex items-center gap-4 bg-slate-900/60 border border-slate-800 rounded-lg px-5 py-3 text-xs text-slate-500">
-          <span className="text-slate-400 font-semibold">Hướng dẫn:</span>
-          <span>① Click champion trong pool để cầm</span>
-          <span>② Click ô hex để đặt xuống</span>
-          <span>③ Click champion đang cầm hoặc champion trên board để bỏ</span>
-          <span>④ Hover ô hex → <kbd className="bg-slate-800 border border-slate-700 rounded px-1">✕</kbd> để xóa</span>
-          <span className="ml-auto"><kbd className="bg-slate-800 border border-slate-700 rounded px-1.5 py-0.5">Esc</kbd> — hủy đang cầm</span>
+        <div
+          className="flex items-center gap-4 rounded-lg px-5 py-3 text-xs"
+          style={{
+            background: "rgba(13,15,25,0.7)",
+            border: "1px solid rgba(200,155,60,0.15)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+          }}
+        >
+          <span className="font-semibold" style={{ color: "#C89B3C", fontFamily: "'Cinzel', Georgia, serif", fontSize: "10px" }}>Hướng dẫn:</span>
+          <span style={{ color: "#5C5040", fontFamily: "'Inter', sans-serif" }}>① Click champion trong pool để cầm</span>
+          <span style={{ color: "#5C5040", fontFamily: "'Inter', sans-serif" }}>② Click ô hex để đặt xuống</span>
+          <span style={{ color: "#5C5040", fontFamily: "'Inter', sans-serif" }}>③ Click champion đang cầm hoặc champion trên board để bỏ</span>
+          <span style={{ color: "#5C5040", fontFamily: "'Inter', sans-serif" }}>④ Hover ô hex → <kbd style={{ background: "rgba(200,155,60,0.08)", border: "1px solid rgba(200,155,60,0.2)", borderRadius: "4px", padding: "0 4px", color: "#A89880" }}>✕</kbd> để xóa</span>
+          <span className="ml-auto" style={{ color: "#5C5040", fontFamily: "'Inter', sans-serif" }}><kbd style={{ background: "rgba(200,155,60,0.08)", border: "1px solid rgba(200,155,60,0.2)", borderRadius: "4px", padding: "1px 6px", color: "#A89880" }}>Esc</kbd> — hủy đang cầm</span>
         </div>
       </main>
     </div>

@@ -206,36 +206,77 @@ const ChampionsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#0b141d]">
+      <div className="min-h-screen flex flex-col" style={{ background: "linear-gradient(180deg, #0B0C10 0%, #1A1C29 60%, #0B0C10 100%)" }}>
         <TFTHeader />
         <div className="flex-1 flex items-center justify-center">
-          <span className="w-8 h-8 border-4 border-slate-600 border-t-orange-500 rounded-full animate-spin" />
+          <span
+            className="w-10 h-10 rounded-full animate-spin"
+            style={{ border: "3px solid rgba(200,155,60,0.15)", borderTopColor: "#C89B3C" }}
+          />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b141d]">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: "linear-gradient(180deg, #0B0C10 0%, #1A1C29 60%, #0B0C10 100%)" }}
+    >
       <TFTHeader activePage="Champions" />
 
       <main className="flex-1 px-8 py-6 max-w-screen-xl mx-auto w-full">
-        <h1 className="text-2xl font-bold text-white mb-1">Champions</h1>
-        <p className="text-slate-400 text-sm mb-6">{champions.length} champions</p>
+        <div className="mb-6">
+          <span
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: "'Cinzel', Georgia, serif", color: "#8A6B28" }}
+          >
+            ✦ Mythic Archives
+          </span>
+          <h1
+            className="text-2xl font-bold mt-1"
+            style={{
+              fontFamily: "'Cinzel', Georgia, serif",
+              color: "#F0E6D2",
+              letterSpacing: "0.04em",
+              textShadow: "0 0 24px rgba(200,155,60,0.2)",
+            }}
+          >
+            Champions
+          </h1>
+          <p className="text-sm mt-1" style={{ color: "#A89880", fontFamily: "'Inter', sans-serif" }}>
+            {champions.length} champions
+          </p>
+        </div>
 
         {/* Filter bar */}
         <div className="flex items-center gap-3 mb-8 flex-wrap">
           {COSTS.map((cost) => (
             <CostBtn key={cost} cost={cost} active={activeCosts.has(cost)} onClick={() => toggleCost(cost)} />
           ))}
-          <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded px-3 py-1.5 ml-auto w-64">
-            <Search size={14} className="text-slate-500 shrink-0" />
+          <div
+            className="flex items-center gap-2 rounded px-3 py-1.5 ml-auto w-64 transition-all duration-200"
+            style={{
+              background: "rgba(200,155,60,0.04)",
+              border: "1px solid rgba(200,155,60,0.15)",
+            }}
+            onFocusCapture={(e) => {
+              e.currentTarget.style.borderColor = "rgba(200,155,60,0.45)";
+              e.currentTarget.style.boxShadow = "0 0 12px rgba(200,155,60,0.1)";
+            }}
+            onBlurCapture={(e) => {
+              e.currentTarget.style.borderColor = "rgba(200,155,60,0.15)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            <Search size={14} className="shrink-0" style={{ color: "#8A6B28" }} />
             <input
               type="text"
               placeholder="Search champion..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-transparent text-sm text-slate-200 placeholder:text-slate-500 outline-none w-full"
+              className="bg-transparent text-sm outline-none w-full"
+              style={{ color: "#F0E6D2", fontFamily: "'Inter', sans-serif" }}
             />
           </div>
         </div>

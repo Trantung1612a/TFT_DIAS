@@ -498,16 +498,56 @@ const ChampionCrudPage = () => {
   const totalPages = Math.ceil(total / LIMIT);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b141d]">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: "linear-gradient(180deg, #0B0C10 0%, #1A1C29 60%, #0B0C10 100%)" }}
+    >
       <TFTHeader />
 
       <main className="flex-1 px-8 py-6 max-w-screen-xl mx-auto w-full">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-white">Quản lý Champions</h1>
-            <p className="text-slate-400 text-sm mt-0.5">{total} champions trong database</p>
+            <span
+              className="text-xs uppercase tracking-widest"
+              style={{ fontFamily: "'Cinzel', Georgia, serif", color: "#8A6B28" }}
+            >
+              ✦ Mythic Archives
+            </span>
+            <h1
+              className="text-2xl font-bold mt-1"
+              style={{
+                fontFamily: "'Cinzel', Georgia, serif",
+                color: "#F0E6D2",
+                letterSpacing: "0.04em",
+                textShadow: "0 0 24px rgba(200,155,60,0.2)",
+              }}
+            >
+              Quản lý Champions
+            </h1>
+            <p className="text-sm mt-0.5" style={{ color: "#A89880", fontFamily: "'Inter', sans-serif" }}>
+              {total} champions trong database
+            </p>
           </div>
-          <button onClick={() => setModal({ data: null })} className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white text-sm font-semibold px-4 py-2 rounded-lg">
+          <button
+            onClick={() => setModal({ data: null })}
+            className="flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200"
+            style={{
+              background: "linear-gradient(135deg, #C89B3C, #8A6B28)",
+              color: "#0B0C10",
+              fontFamily: "'Cinzel', Georgia, serif",
+              fontSize: "11px",
+              letterSpacing: "0.05em",
+              boxShadow: "0 0 16px rgba(200,155,60,0.3)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 0 24px rgba(200,155,60,0.5)";
+              e.currentTarget.style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 0 16px rgba(200,155,60,0.3)";
+              e.currentTarget.style.transform = "translateY(0)";
+            }}
+          >
             <Plus size={16} /> Thêm Champion
           </button>
         </div>
@@ -515,18 +555,41 @@ const ChampionCrudPage = () => {
         {/* Filters */}
         <div className="flex gap-3 mb-5">
           <div className="relative flex-1 max-w-xs">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: "#8A6B28" }} />
             <input
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-orange-500"
+              className="w-full rounded-lg pl-9 pr-3 py-2 text-sm outline-none transition-all duration-200"
+              style={{
+                background: "rgba(200,155,60,0.04)",
+                border: "1px solid rgba(200,155,60,0.2)",
+                color: "#F0E6D2",
+                fontFamily: "'Inter', sans-serif",
+              }}
               placeholder="Tìm tên champion..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.5)";
+                e.currentTarget.style.boxShadow = "0 0 12px rgba(200,155,60,0.1)";
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = "rgba(200,155,60,0.2)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             />
           </div>
           <div className="flex gap-2">
             {["", 1, 2, 3, 4, 5].map((c) => (
-              <button key={c} onClick={() => { setCostFilter(c); setPage(1); }}
-                className={`px-3 py-2 rounded-lg text-xs font-semibold border transition-colors ${costFilter === c ? "bg-orange-600 border-orange-600 text-white" : "bg-slate-800 border-slate-700 text-slate-400 hover:text-white"}`}>
+              <button
+                key={c}
+                onClick={() => { setCostFilter(c); setPage(1); }}
+                className="px-3 py-2 rounded-lg text-xs font-semibold border transition-all duration-200"
+                style={{
+                  background: costFilter === c ? "rgba(200,155,60,0.15)" : "rgba(200,155,60,0.04)",
+                  border: costFilter === c ? "1px solid rgba(200,155,60,0.5)" : "1px solid rgba(200,155,60,0.15)",
+                  color: costFilter === c ? "#C89B3C" : "#A89880",
+                  fontFamily: "'Inter', sans-serif",
+                }}
+              >
                 {c === "" ? "Tất cả" : `${c}★`}
               </button>
             ))}
@@ -534,10 +597,25 @@ const ChampionCrudPage = () => {
         </div>
 
         {/* Table */}
-        <div className="bg-[#0f1b27] border border-slate-800 rounded-xl overflow-hidden">
+        <div
+          className="rounded-xl overflow-hidden"
+          style={{
+            background: "#0F1119",
+            border: "1px solid rgba(200,155,60,0.15)",
+          }}
+        >
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-800 text-xs text-slate-500 uppercase tracking-wider">
+              <tr
+                className="text-xs uppercase tracking-wider"
+                style={{
+                  borderBottom: "1px solid rgba(200,155,60,0.15)",
+                  color: "#8A6B28",
+                  fontFamily: "'Cinzel', Georgia, serif",
+                  fontSize: "10px",
+                  letterSpacing: "0.08em",
+                }}
+              >
                 <th className="px-4 py-3 text-left w-14">Ảnh</th>
                 <th className="px-4 py-3 text-left">Tên</th>
                 <th className="px-4 py-3 text-left w-16">Cost</th>
@@ -551,12 +629,19 @@ const ChampionCrudPage = () => {
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan={9} className="text-center py-12 text-slate-500">Đang tải...</td></tr>
+                <tr><td colSpan={9} className="text-center py-12" style={{ color: "#5C5040", fontFamily: "'Inter', sans-serif" }}>Đang tải...</td></tr>
               ) : champions.length === 0 ? (
-                <tr><td colSpan={9} className="text-center py-12 text-slate-500">Không có dữ liệu</td></tr>
+                <tr><td colSpan={9} className="text-center py-12" style={{ color: "#5C5040", fontFamily: "'Inter', sans-serif" }}>Không có dữ liệu</td></tr>
               ) : (
                 champions.map((champ) => (
-                  <tr key={champ._id} onClick={() => setDetailChamp(champ)} className="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors cursor-pointer">
+                  <tr
+                    key={champ._id}
+                    onClick={() => setDetailChamp(champ)}
+                    className="cursor-pointer transition-all duration-200"
+                    style={{ borderBottom: "1px solid rgba(200,155,60,0.07)" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(200,155,60,0.04)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+                  >
                     <td className="px-4 py-2">
                       {champ.base_image_id
                         ? <img src={CDN_THUMB(champ.base_image_id)} alt={champ.name} className="w-16 h-8 rounded object-cover" />
@@ -598,11 +683,25 @@ const ChampionCrudPage = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between mt-4 text-sm text-slate-400">
+          <div className="flex items-center justify-between mt-4 text-sm" style={{ color: "#A89880", fontFamily: "'Inter', sans-serif" }}>
             <span>Trang {page} / {totalPages}</span>
             <div className="flex gap-2">
-              <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="p-2 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronLeft size={16} /></button>
-              <button disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)} className="p-2 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronRight size={16} /></button>
+              <button
+                disabled={page <= 1}
+                onClick={() => setPage((p) => p - 1)}
+                className="p-2 rounded transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                style={{ background: "rgba(200,155,60,0.08)", border: "1px solid rgba(200,155,60,0.2)", color: "#C89B3C" }}
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                disabled={page >= totalPages}
+                onClick={() => setPage((p) => p + 1)}
+                className="p-2 rounded transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                style={{ background: "rgba(200,155,60,0.08)", border: "1px solid rgba(200,155,60,0.2)", color: "#C89B3C" }}
+              >
+                <ChevronRight size={16} />
+              </button>
             </div>
           </div>
         )}
@@ -629,7 +728,18 @@ const ChampionCrudPage = () => {
       )}
 
       {toast && (
-        <div className="fixed bottom-6 right-6 bg-green-700 text-white text-sm px-4 py-2.5 rounded-lg shadow-lg">{toast}</div>
+        <div
+          className="fixed bottom-6 right-6 text-sm px-4 py-2.5 rounded-lg shadow-lg"
+          style={{
+            background: "rgba(10,200,185,0.15)",
+            border: "1px solid rgba(10,200,185,0.4)",
+            color: "#0AC8B9",
+            backdropFilter: "blur(8px)",
+            fontFamily: "'Inter', sans-serif",
+          }}
+        >
+          {toast}
+        </div>
       )}
     </div>
   );
